@@ -1,0 +1,176 @@
+---
+
+---
+
+<section class="flex items-center justify-center gap-8">
+  <div class="flex flex-col gap-8">
+    <button
+      class="border-2 border-black bg-white px-4 py-2 text-xl"
+      id="descargarBoton">Descargar Imagen</button
+    >
+    <input
+      class="border-2 border-black bg-white px-4 py-2 text-xl"
+      type="file"
+      id="subirArchivo"
+      accept="image/*"
+    />
+
+    <h3 class="text-xl font-bold">Modifica tus datos</h3>
+    <div class="flex flex-col gap-8">
+      <label class="text-xl" for="textoInput">Titulo:</label>
+      <input
+        class="border-2 border-black bg-white px-4 py-2 text-xl"
+        type="text"
+        id="textoInput"
+        placeholder="Ingrese el nuevo texto"
+      />
+
+      <label class="text-xl" for="textoInput1">Dirección:</label>
+      <input
+        class="border-2 border-black bg-white px-4 py-2 text-xl"
+        type="text"
+        id="textoInput1"
+        placeholder="Ingrese el nuevo texto"
+      />
+
+      <label class="text-xl" for="textoInput2">Distrito:</label>
+      <input
+        class="border-2 border-black bg-white px-4 py-2 text-xl"
+        type="text"
+        id="textoInput2"
+        placeholder="Ingrese el nuevo texto"
+      />
+
+      <label class="text-xl" for="textoInput3">Ciudad:</label>
+      <input
+        class="border-2 border-black bg-white px-4 py-2 text-xl"
+        type="text"
+        id="textoInput3"
+        placeholder="Ingrese el nuevo texto"
+      />
+      <button
+        class="border-2 border-black bg-gray-300 px-4 py-2 text-xl"
+        id="aplicarCambiosBoton">Aplicar Cambios</button
+      >
+    </div>
+  </div>
+
+  <canvas
+    class="border-4 border-black bg-yellow-100"
+    id="miCanvas"
+    width="800"
+    height="400"></canvas>
+</section>
+
+<style></style>
+
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", () => {
+    const canvas = document.getElementById("miCanvas");
+    const ctx = canvas.getContext("2d");
+    const subirArchivoInput = document.getElementById("subirArchivo");
+    const textoInput = document.getElementById("textoInput");
+    const aplicarCambiosBoton = document.getElementById("aplicarCambiosBoton");
+    const descargarBoton = document.getElementById("descargarBoton");
+
+    let tituloEnCanvas = "Mi Casa de Manuel";
+    let direccionEnCanvas = "Dirección";
+    let distritoEnCanvas = "Distrito";
+    let ciudadEnCanvas = "Ciudad";
+
+    // Agregar texto al canvas
+    ctx.font = "bold 25px Inter";
+    ctx.fillStyle = "black";
+    ctx.fillText(tituloEnCanvas, 10, 40);
+
+    ctx.font = "bold 18px Inter";
+
+    ctx.fillText(direccionEnCanvas, 10, 80);
+    ctx.fillText(distritoEnCanvas, 10, 110);
+    ctx.fillText(ciudadEnCanvas, 10, 140);
+
+    // Manejar el cambio en la selección de archivo
+    subirArchivoInput.addEventListener("change", (event) => {
+      const archivo = event.target.files[0];
+
+      if (archivo) {
+        const lector = new FileReader();
+
+        lector.onload = function (e) {
+          const imagen = new Image();
+          imagen.src = e.target.result;
+
+          imagen.onload = function () {
+            ctx.clearRect(0, 0, canvas.width, canvas.height); // Limpiar el canvas
+            ctx.drawImage(imagen, 400, 0, 400, 400);
+
+            // Dibujar un borde
+            ctx.strokeStyle = "black";
+            ctx.lineWidth = 2; // Ancho del borde
+            ctx.strokeRect(400, 0, 400, 400);
+
+            // Agregar texto al canvas
+            ctx.font = "bold 25px Inter";
+            ctx.fillStyle = "black";
+            ctx.fillText(tituloEnCanvas, 10, 40);
+
+            ctx.font = "bold 18px Inter";
+            console.log("direccion", direccionEnCanvas);
+            console.log("distrito", distritoEnCanvas);
+            console.log("ciudad", ciudadEnCanvas);
+            ctx.fillText(direccionEnCanvas, 10, 80);
+            ctx.fillText(distritoEnCanvas, 10, 110);
+            ctx.fillText(ciudadEnCanvas, 10, 140);
+          };
+        };
+
+        lector.readAsDataURL(archivo);
+      }
+    });
+
+    // Manejar clic en el botón de aplicar cambios
+    aplicarCambiosBoton.addEventListener("click", () => {
+      // Obtener el nuevo texto del input
+      tituloEnCanvas = textoInput.value;
+      direccionEnCanvas = textoInput1.value;
+      distritoEnCanvas = textoInput2.value;
+      ciudadEnCanvas = textoInput3.value;
+
+      // Limpiar el canvas
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Dibujar la imagen
+      // Nota: La lógica de dibujar la imagen puede ser similar a la anterior
+
+      // Agregar texto actualizado al canvas
+
+      ctx.font = "bold 25px Inter";
+      ctx.fillStyle = "black";
+      ctx.fillText(tituloEnCanvas, 10, 40);
+
+      ctx.font = "bold 18px Inter";
+      console.log("direccion", direccionEnCanvas);
+      console.log("distrito", distritoEnCanvas);
+      console.log("ciudad", ciudadEnCanvas);
+      ctx.fillText(direccionEnCanvas, 10, 80);
+      ctx.fillText(distritoEnCanvas, 10, 110);
+      ctx.fillText(ciudadEnCanvas, 10, 140);
+    });
+
+    // Manejar clic en el botón de descarga
+    descargarBoton.addEventListener("click", () => {
+      // Obtener la representación en formato de datos URL de la imagen
+      const dataURL = canvas.toDataURL("image/png");
+
+      // Crear un enlace temporal
+      const enlaceDescarga = document.createElement("a");
+
+      // Establecer el enlace con la representación de datos URL y el nombre del archivo
+      enlaceDescarga.href = dataURL;
+      enlaceDescarga.download = "mi_mapa.png";
+
+      // Simular un clic en el enlace para iniciar la descarga
+      enlaceDescarga.click();
+    });
+  });
+</script>
