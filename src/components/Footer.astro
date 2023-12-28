@@ -1,0 +1,14 @@
+<footer class="mt-10 flex justify-around bg-zinc-900 py-8 text-lg text-white">
+  <a href="#" id="toTop" class="underline">Volver arriba</a>
+  <div>Creado por : <a class="italic underline" href="">mcuyaca</a></div>
+</footer>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const element = document.getElementById("toTop");
+    element?.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  });
+</script>

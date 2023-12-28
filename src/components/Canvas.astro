@@ -2,64 +2,70 @@
 
 ---
 
-<section class="flex items-center justify-center gap-8">
-  <div class="flex flex-col gap-8">
-    <button
-      class="border-2 border-black bg-white px-4 py-2 text-xl"
-      id="descargarBoton">Descargar Imagen</button
-    >
-    <input
-      class="border-2 border-black bg-white px-4 py-2 text-xl"
-      type="file"
-      id="subirArchivo"
-      accept="image/*"
-    />
+<section class="flex w-full flex-col items-center justify-center gap-8">
+  <h3 class="text-3xl font-bold">Comienaza a dibujar</h3>
 
-    <h3 class="text-xl font-bold">Modifica tus datos</h3>
-    <div class="flex flex-col gap-8">
-      <label class="text-xl" for="textoInput">Titulo:</label>
-      <input
-        class="border-2 border-black bg-white px-4 py-2 text-xl"
-        type="text"
-        id="textoInput"
-        placeholder="Ingrese el nuevo texto"
-      />
+  <div class="flex gap-[90px]">
+    <div class="grid w-full gap-8">
+      <div class="flex w-full flex-col gap-3">
+        <label class="" for="textoInput">Titulo:</label>
+        <input
+          class="border-2 border-black bg-white p-2.5 px-4 py-2 shadow-[4px_4px_0px_rgba(0,0,0,1)] focus:bg-rose-300 focus:outline-none"
+          type="text"
+          id="textoInput"
+          placeholder="Ingrese el nuevo texto"
+        />
 
-      <label class="text-xl" for="textoInput1">Dirección:</label>
-      <input
-        class="border-2 border-black bg-white px-4 py-2 text-xl"
-        type="text"
-        id="textoInput1"
-        placeholder="Ingrese el nuevo texto"
-      />
+        <label class="" for="textoInput1">Dirección:</label>
+        <input
+          class="border-2 border-black bg-white p-2.5 px-4 py-2 shadow-[4px_4px_0px_rgba(0,0,0,1)] focus:bg-rose-300 focus:outline-none"
+          type="text"
+          id="textoInput1"
+          placeholder="Ingrese el nuevo texto"
+        />
 
-      <label class="text-xl" for="textoInput2">Distrito:</label>
-      <input
-        class="border-2 border-black bg-white px-4 py-2 text-xl"
-        type="text"
-        id="textoInput2"
-        placeholder="Ingrese el nuevo texto"
-      />
+        <label class="" for="textoInput2">Distrito:</label>
+        <input
+          class="border-2 border-black bg-white p-2.5 px-4 py-2 shadow-[4px_4px_0px_rgba(0,0,0,1)] focus:bg-rose-300 focus:outline-none"
+          type="text"
+          id="textoInput2"
+          placeholder="Ingrese el nuevo texto"
+        />
 
-      <label class="text-xl" for="textoInput3">Ciudad:</label>
-      <input
-        class="border-2 border-black bg-white px-4 py-2 text-xl"
-        type="text"
-        id="textoInput3"
-        placeholder="Ingrese el nuevo texto"
-      />
-      <button
-        class="border-2 border-black bg-gray-300 px-4 py-2 text-xl"
-        id="aplicarCambiosBoton">Aplicar Cambios</button
-      >
+        <label class="" for="textoInput3">Ciudad:</label>
+        <input
+          class="border-2 border-black bg-white p-2.5 px-4 py-2 shadow-[4px_4px_0px_rgba(0,0,0,1)] focus:bg-rose-300 focus:outline-none"
+          type="text"
+          id="textoInput3"
+          placeholder="Ingrese el nuevo texto"
+        />
+
+        <button
+          class="mt-3 border-2 border-black bg-slate-300 px-4 py-2 font-bold shadow-[4px_4px_0px_rgba(0,0,0,1)] focus:bg-rose-300 focus:outline-none"
+          id="aplicarCambiosBoton">Aplicar Cambios</button
+        >
+      </div>
+
+      <div class="flex flex-col gap-4">
+        <input
+          class="border-2 border-black bg-white p-2.5 px-4 py-2 shadow-[4px_4px_0px_rgba(0,0,0,1)] file:rounded file:border-0 file:bg-slate-300 file:font-bold focus:bg-rose-300 focus:outline-none"
+          type="file"
+          id="subirArchivo"
+          accept="image/*"
+        />
+        <button
+          class="mt-3 border-2 border-black bg-slate-300 px-4 py-2 font-bold shadow-[4px_4px_0px_rgba(0,0,0,1)] focus:bg-rose-300 focus:outline-none"
+          id="descargarBoton">Descargar Imagen</button
+        >
+      </div>
     </div>
-  </div>
 
-  <canvas
-    class="border-4 border-black bg-yellow-100"
-    id="miCanvas"
-    width="800"
-    height="400"></canvas>
+    <canvas
+      class="border-4 border-black bg-white"
+      id="miCanvas"
+      width="450"
+      height='600"'></canvas>
+  </div>
 </section>
 
 <style></style>
@@ -73,21 +79,24 @@
     const aplicarCambiosBoton = document.getElementById("aplicarCambiosBoton");
     const descargarBoton = document.getElementById("descargarBoton");
 
-    let tituloEnCanvas = "Mi Casa de Manuel";
-    let direccionEnCanvas = "Dirección";
-    let distritoEnCanvas = "Distrito";
-    let ciudadEnCanvas = "Ciudad";
+    let tituloEnCanvas = "Casa de Manuel";
+    let direccionEnCanvas = "Dirección: ";
+    let distritoEnCanvas = "Distrito: ";
+    let ciudadEnCanvas = "Ciudad: ";
+
+    ctx.fillStyle = "white";
+    ctx.fillRect(0, 0, 450, 600);
 
     // Agregar texto al canvas
     ctx.font = "bold 25px Inter";
     ctx.fillStyle = "black";
-    ctx.fillText(tituloEnCanvas, 10, 40);
+    ctx.fillText(tituloEnCanvas, 10, 465);
 
     ctx.font = "bold 18px Inter";
 
-    ctx.fillText(direccionEnCanvas, 10, 80);
-    ctx.fillText(distritoEnCanvas, 10, 110);
-    ctx.fillText(ciudadEnCanvas, 10, 140);
+    ctx.fillText(direccionEnCanvas, 10, 505);
+    ctx.fillText(distritoEnCanvas, 10, 535);
+    ctx.fillText(ciudadEnCanvas, 10, 565);
 
     // Manejar el cambio en la selección de archivo
     subirArchivoInput.addEventListener("change", (event) => {
@@ -102,25 +111,26 @@
 
           imagen.onload = function () {
             ctx.clearRect(0, 0, canvas.width, canvas.height); // Limpiar el canvas
-            ctx.drawImage(imagen, 400, 0, 400, 400);
-
+            ctx.drawImage(imagen, 25, 25, 400, 400);
+            ctx.fillStyle = "white";
+            ctx.fillRect(0, 0, 450, 600);
             // Dibujar un borde
             ctx.strokeStyle = "black";
-            ctx.lineWidth = 2; // Ancho del borde
-            ctx.strokeRect(400, 0, 400, 400);
+            ctx.lineWidth = 3; // Ancho del borde
+            ctx.strokeRect(25, 25, 400, 400);
 
             // Agregar texto al canvas
             ctx.font = "bold 25px Inter";
             ctx.fillStyle = "black";
-            ctx.fillText(tituloEnCanvas, 10, 40);
+            ctx.fillText(tituloEnCanvas, 10, 465);
 
             ctx.font = "bold 18px Inter";
             console.log("direccion", direccionEnCanvas);
             console.log("distrito", distritoEnCanvas);
             console.log("ciudad", ciudadEnCanvas);
-            ctx.fillText(direccionEnCanvas, 10, 80);
-            ctx.fillText(distritoEnCanvas, 10, 110);
-            ctx.fillText(ciudadEnCanvas, 10, 140);
+            ctx.fillText(direccionEnCanvas, 10, 505);
+            ctx.fillText(distritoEnCanvas, 10, 535);
+            ctx.fillText(ciudadEnCanvas, 10, 565);
           };
         };
 
@@ -143,31 +153,32 @@
       // Nota: La lógica de dibujar la imagen puede ser similar a la anterior
 
       // Agregar texto actualizado al canvas
-
+      ctx.fillStyle = "white";
+      ctx.fillRect(0, 0, 600, 450);
       ctx.font = "bold 25px Inter";
       ctx.fillStyle = "black";
-      ctx.fillText(tituloEnCanvas, 10, 40);
+      ctx.fillText(tituloEnCanvas, 10, 465);
 
       ctx.font = "bold 18px Inter";
       console.log("direccion", direccionEnCanvas);
       console.log("distrito", distritoEnCanvas);
       console.log("ciudad", ciudadEnCanvas);
-      ctx.fillText(direccionEnCanvas, 10, 80);
-      ctx.fillText(distritoEnCanvas, 10, 110);
-      ctx.fillText(ciudadEnCanvas, 10, 140);
+      ctx.fillText(direccionEnCanvas, 10, 505);
+      ctx.fillText(distritoEnCanvas, 10, 535);
+      ctx.fillText(ciudadEnCanvas, 10, 565);
     });
 
     // Manejar clic en el botón de descarga
     descargarBoton.addEventListener("click", () => {
       // Obtener la representación en formato de datos URL de la imagen
-      const dataURL = canvas.toDataURL("image/png");
+      const dataURL = canvas.toDataURL("image/jpg");
 
       // Crear un enlace temporal
       const enlaceDescarga = document.createElement("a");
 
       // Establecer el enlace con la representación de datos URL y el nombre del archivo
       enlaceDescarga.href = dataURL;
-      enlaceDescarga.download = "mi_mapa.png";
+      enlaceDescarga.download = "mi_mapa.jpg";
 
       // Simular un clic en el enlace para iniciar la descarga
       enlaceDescarga.click();
