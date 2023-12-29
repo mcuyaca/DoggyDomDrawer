@@ -6,22 +6,25 @@ import HeroDog from "../images/doghero.jpeg";
 
 <section class="mt-10 flex items-center justify-center gap-10">
   <div class="flex w-[500px] flex-col items-center gap-8">
-    <h1 class="text-left text-7xl font-bold text-orange-500">
-      Envia tu ubicación de una forma comoda!
+    <h1 class="text-left text-7xl font-extrabold text-orange-500">
+      Envia tu <span class="text-red-600">ubicación</span> de una <span
+        class="text-red-600"
+      >
+        forma comoda!</span
+      >
     </h1>
-    <p class="text-lg">
+    <p class="text-lg font-medium opacity-80">
       Crea un mapa de tu casa para que te encuentre de forma sencilla los
       servicios de delivery.
     </p>
     <button
-      class="w-fit border-[3px] border-black bg-white px-20 py-4 text-lg font-bold shadow-[8px_8px_0px_rgba(0,0,0,1)] transition
-      duration-300 ease-in-out hover:translate-y-1
-     hover:bg-blue-400"
+      class="w-fit animate-bounce border-[3px] border-black bg-orange-400 px-20 py-4 text-lg font-bold shadow-[8px_8px_0px_rgba(0,0,0,1)]
+     hover:bg-orange-300"
       >Crear mapa 🗺️🐶👍</button
     >
   </div>
   <Image
-    class="h-[500px] w-[500px] animate-bounce rounded-3xl border-4 border-black shadow-[8px_8px_0px_rgba(0,0,0,1)] shadow-sm"
+    class="h-[500px] w-[500px] rounded-3xl border-4 border-black shadow-[8px_8px_0px_rgba(0,0,0,1)]"
     src={HeroDog}
     alt="Un perro mostrando un mapa"
   />
@@ -37,7 +40,7 @@ import HeroDog from "../images/doghero.jpeg";
       transform: translateY(0);
     }
     40% {
-      transform: translateY(-20px);
+      transform: translateY(-5px);
     }
     60% {
       transform: translateY(-5px);
