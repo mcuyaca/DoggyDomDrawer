@@ -1,5 +1,5 @@
 ---
-
+import InputText from "./elements/InputText.astro";
 ---
 
 <section class="flex w-full flex-col items-center justify-center gap-8">
@@ -8,36 +8,26 @@
   <div class="flex gap-[90px]">
     <div class="grid w-full gap-8">
       <div class="flex w-full flex-col gap-3">
-        <label class="" for="textoInput">Titulo:</label>
-        <input
-          class="border-2 border-black bg-white p-2.5 px-4 py-2 shadow-[4px_4px_0px_rgba(0,0,0,1)] focus:bg-rose-300 focus:outline-none"
-          type="text"
+        <InputText
+          label="Titulo:"
+          placeholder="Ingresar el nuevo texto"
           id="textoInput"
-          placeholder="Ingrese el nuevo texto"
         />
-
-        <label class="" for="textoInput1">Dirección:</label>
-        <input
-          class="border-2 border-black bg-white p-2.5 px-4 py-2 shadow-[4px_4px_0px_rgba(0,0,0,1)] focus:bg-rose-300 focus:outline-none"
-          type="text"
+        <InputText
+          label="Dirección:"
+          placeholder="Ingresar el nuevo texto"
           id="textoInput1"
-          placeholder="Ingrese el nuevo texto"
         />
-
-        <label class="" for="textoInput2">Distrito:</label>
-        <input
-          class="border-2 border-black bg-white p-2.5 px-4 py-2 shadow-[4px_4px_0px_rgba(0,0,0,1)] focus:bg-rose-300 focus:outline-none"
-          type="text"
+        <InputText
+          label="Distrito:"
+          placeholder="Ingresar el nuevo texto"
           id="textoInput2"
-          placeholder="Ingrese el nuevo texto"
         />
 
-        <label class="" for="textoInput3">Ciudad:</label>
-        <input
-          class="border-2 border-black bg-white p-2.5 px-4 py-2 shadow-[4px_4px_0px_rgba(0,0,0,1)] focus:bg-rose-300 focus:outline-none"
-          type="text"
+        <InputText
+          label="Ciudad:"
+          placeholder="Ingresar el nuevo texto"
           id="textoInput3"
-          placeholder="Ingrese el nuevo texto"
         />
 
         <button
@@ -60,77 +50,66 @@
       </div>
     </div>
 
-    <canvas
-      class="border-4 border-black bg-white"
-      id="miCanvas"
-      width="450"
-      height='600"'></canvas>
+    <canvas class="bg-white" id="miCanvas" width="450" height='600"'></canvas>
   </div>
 </section>
 
 <style></style>
 
 <script is:inline>
-  document.addEventListener("DOMContentLoaded", () => {
-    const canvas = document.getElementById("miCanvas");
-    const ctx = canvas.getContext("2d");
-    const subirArchivoInput = document.getElementById("subirArchivo");
-    const textoInput = document.getElementById("textoInput");
-    const aplicarCambiosBoton = document.getElementById("aplicarCambiosBoton");
-    const descargarBoton = document.getElementById("descargarBoton");
-
-    let tituloEnCanvas = "Casa de Manuel";
-    let direccionEnCanvas = "Dirección: ";
-    let distritoEnCanvas = "Distrito: ";
-    let ciudadEnCanvas = "Ciudad: ";
+  function DibujoInicial(ctx, imagen) {
+    let tituloEnCanvas = textoInput.value || "Casa de Manuel";
+    let direccionEnCanvas = textoInput1.value || "Dirección: ";
+    let distritoEnCanvas = textoInput2.value || "Distrito: ";
+    let ciudadEnCanvas = textoInput3.value || "Ciudad: ";
 
     ctx.fillStyle = "white";
     ctx.fillRect(0, 0, 450, 600);
+    ctx.strokeStyle = "black";
+    ctx.lineWidth = 5;
+    ctx.strokeRect(0, 0, 450, 600);
 
-    // Agregar texto al canvas
-    ctx.font = "bold 25px Inter";
+    const noImagen = () => {
+      ctx.fillStyle = "#CBD5E1";
+      ctx.fillRect(25, 25, 400, 400);
+    };
+    imagen ? ctx.drawImage(imagen, 25, 25, 400, 400) : noImagen();
+
+    ctx.strokeStyle = "black";
+    ctx.lineWidth = 2;
+    ctx.strokeRect(25, 25, 400, 400);
+
+    ctx.font = "bold 25px Onest Variable";
     ctx.fillStyle = "black";
     ctx.fillText(tituloEnCanvas, 10, 465);
 
-    ctx.font = "bold 18px Inter";
+    ctx.font = "bold 18px Onest Variable";
 
     ctx.fillText(direccionEnCanvas, 10, 505);
     ctx.fillText(distritoEnCanvas, 10, 535);
     ctx.fillText(ciudadEnCanvas, 10, 565);
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const canvas = document.getElementById("miCanvas");
+    const ctx = canvas.getContext("2d");
+    const subirArchivoInput = document.getElementById("subirArchivo");
+    const aplicarCambiosBoton = document.getElementById("aplicarCambiosBoton");
+    const descargarBoton = document.getElementById("descargarBoton");
+
+    DibujoInicial(ctx);
 
     // Manejar el cambio en la selección de archivo
     subirArchivoInput.addEventListener("change", (event) => {
       const archivo = event.target.files[0];
-
       if (archivo) {
         const lector = new FileReader();
-
         lector.onload = function (e) {
           const imagen = new Image();
           imagen.src = e.target.result;
-
           imagen.onload = function () {
-            ctx.clearRect(0, 0, canvas.width, canvas.height); // Limpiar el canvas
-            ctx.drawImage(imagen, 25, 25, 400, 400);
-            ctx.fillStyle = "white";
-            ctx.fillRect(0, 0, 450, 600);
-            // Dibujar un borde
-            ctx.strokeStyle = "black";
-            ctx.lineWidth = 3; // Ancho del borde
-            ctx.strokeRect(25, 25, 400, 400);
-
-            // Agregar texto al canvas
-            ctx.font = "bold 25px Inter";
-            ctx.fillStyle = "black";
-            ctx.fillText(tituloEnCanvas, 10, 465);
-
-            ctx.font = "bold 18px Inter";
-            console.log("direccion", direccionEnCanvas);
-            console.log("distrito", distritoEnCanvas);
-            console.log("ciudad", ciudadEnCanvas);
-            ctx.fillText(direccionEnCanvas, 10, 505);
-            ctx.fillText(distritoEnCanvas, 10, 535);
-            ctx.fillText(ciudadEnCanvas, 10, 565);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            DibujoInicial(ctx, imagen);
           };
         };
 
@@ -138,49 +117,16 @@
       }
     });
 
-    // Manejar clic en el botón de aplicar cambios
     aplicarCambiosBoton.addEventListener("click", () => {
-      // Obtener el nuevo texto del input
-      tituloEnCanvas = textoInput.value;
-      direccionEnCanvas = textoInput1.value;
-      distritoEnCanvas = textoInput2.value;
-      ciudadEnCanvas = textoInput3.value;
-
-      // Limpiar el canvas
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      // Dibujar la imagen
-      // Nota: La lógica de dibujar la imagen puede ser similar a la anterior
-
-      // Agregar texto actualizado al canvas
-      ctx.fillStyle = "white";
-      ctx.fillRect(0, 0, 600, 450);
-      ctx.font = "bold 25px Inter";
-      ctx.fillStyle = "black";
-      ctx.fillText(tituloEnCanvas, 10, 465);
-
-      ctx.font = "bold 18px Inter";
-      console.log("direccion", direccionEnCanvas);
-      console.log("distrito", distritoEnCanvas);
-      console.log("ciudad", ciudadEnCanvas);
-      ctx.fillText(direccionEnCanvas, 10, 505);
-      ctx.fillText(distritoEnCanvas, 10, 535);
-      ctx.fillText(ciudadEnCanvas, 10, 565);
+      DibujoInicial(ctx);
     });
 
-    // Manejar clic en el botón de descarga
     descargarBoton.addEventListener("click", () => {
-      // Obtener la representación en formato de datos URL de la imagen
       const dataURL = canvas.toDataURL("image/jpg");
-
-      // Crear un enlace temporal
       const enlaceDescarga = document.createElement("a");
-
-      // Establecer el enlace con la representación de datos URL y el nombre del archivo
       enlaceDescarga.href = dataURL;
       enlaceDescarga.download = "mi_mapa.jpg";
-
-      // Simular un clic en el enlace para iniciar la descarga
       enlaceDescarga.click();
     });
   });
