@@ -4,13 +4,15 @@ import { Image } from "astro:assets";
 import HeroDog from "../images/doghero.jpeg";
 ---
 
-<section class="mt-10 flex items-center justify-center gap-10">
+<section
+  class="mt-10 flex flex-col items-center justify-center gap-10 md:flex-row"
+>
   <div class="flex w-[500px] flex-col items-center gap-8">
     <h1 class="text-left text-7xl font-extrabold text-orange-500">
       Envia tu <span class="text-red-600">ubicación</span> de una <span
         class="text-red-600"
       >
-        forma comoda!</span
+        forma cómoda!</span
       >
     </h1>
     <p class="text-lg font-medium opacity-80">

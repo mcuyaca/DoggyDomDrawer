@@ -8,7 +8,7 @@ import { Image } from "astro:assets";
 <section class="flex w-full flex-col items-center justify-center gap-8">
   <h1 class="text-3xl font-bold">Comienza a dibujar</h1>
 
-  <div class="flex items-center justify-center gap-[90px]">
+  <div class="flex flex-col items-center justify-center gap-[90px] md:flex-col">
     <div class="grid w-full gap-8">
       <div class="flex w-full flex-col gap-3">
         <h2 class="text-xl font-bold text-red-600">
@@ -67,25 +67,24 @@ import { Image } from "astro:assets";
       width="450"
       height='600"'></canvas>
   </div>
-</section>
 
-<section class="flex flex-col items-center gap-8">
-  <h1 class="text-3xl font-bold">Ejemplos</h1>
-  <div class="flex gap-8">
-    <Image
-      class="h-[600px] w-[450px]"
-      src={img1}
-      alt="Referencia del Museo Larco"
-    />
+  <section class="flex flex-col items-center gap-8">
+    <h1 class="text-3xl font-bold">Ejemplos</h1>
+    <div class="flex flex-col gap-8 md:flex-row">
+      <Image
+        class="h-[600px] w-[450px]"
+        src={img1}
+        alt="Referencia del Museo Larco"
+      />
 
-    <Image
-      class="h-[600px] w-[450px]"
-      src={img2}
-      alt="Referencia de Plaza San Miguel"
-    />
-  </div>
+      <Image
+        class="h-[600px] w-[450px]"
+        src={img2}
+        alt="Referencia de Plaza San Miguel"
+      />
+    </div>
+  </section>
 </section>
-<style></style>
 
 <script is:inline>
   function DibujoInicial(ctx, imagen) {
