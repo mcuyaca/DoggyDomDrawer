@@ -9,6 +9,11 @@ Crea una imagen representativa de tu casa para evitar descripciones repetitivas.
 
 Añade un toque personal a tu mapa con un mensaje, título, referencia, identificador o incluso emoticonos para hacerlo único y especial.
 
+## Funcionalidades
+
+- Imagen con Leyenda
+- Imagen para firma de correo
+
 ## Cómo Empezar
 
 **Clona el Repositorio:**

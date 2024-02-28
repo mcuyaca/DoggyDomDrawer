@@ -1,4 +1,4 @@
-class Icons {
+export class Icons {
   constructor() {}
 
   building() {
