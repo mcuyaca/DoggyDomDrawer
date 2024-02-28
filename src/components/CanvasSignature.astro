@@ -228,6 +228,8 @@ import { Image } from "astro:assets";
             DibujoInicial(ctx, imagen);
           };
         };
+        const nombreImagen = `imagen_${Date.now()}`;
+        subirArchivoInput.setAttribute("name", nombreImagen);
 
         lector.readAsDataURL(archivo);
       }
