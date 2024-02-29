@@ -1,0 +1,40 @@
+---
+import { Image } from "astro:assets";
+import example1 from "../images/example1.jpg";
+import example3 from "../images/example3.jpg";
+import example5 from "../images/example5.jpg";
+---
+
+<section class="mx-auto flex flex-col gap-10 md:flex-row md:justify-center">
+  <div>
+    <h2
+      class="w-[450px] border-[3px] border-black bg-violet-400 py-2 text-center text-xl font-bold shadow-[8px_8px_0px_rgba(0,0,0,1)]"
+    >
+      Usala como firmas para tus correos
+    </h2>
+
+    <Image
+      class="h-[200px] w-[450px] border-2 border-solid border-black shadow-[8px_8px_0px_rgba(0,0,0,1)]"
+      src={example3}
+      alt="Firma de correo"
+    />
+    <Image
+      class="h-[200px] w-[450px] border-2 border-solid border-black shadow-[8px_8px_0px_rgba(0,0,0,1)]"
+      src={example5}
+      alt="Firma de correo"
+    />
+  </div>
+  <div>
+    <h2
+      class="w-[450px] border-[3px] border-black bg-violet-400 py-2 text-center text-xl font-bold shadow-[8px_8px_0px_rgba(0,0,0,1)]"
+    >
+      Usala como referencia de lugares
+    </h2>
+
+    <Image
+      class="h-[600px] w-[450px] border-black shadow-[8px_8px_0px_rgba(0,0,0,1)]"
+      src={example1}
+      alt="Referencia de Museo Larco"
+    />
+  </div>
+</section>
