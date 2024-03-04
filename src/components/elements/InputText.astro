@@ -2,9 +2,9 @@
 const { label, placeholder, id, classInput, classLabel } = Astro.props;
 ---
 
-<label class={classLabel} for="textoInput">{label}</label>
+<label class={` font-semibold ${classLabel}`} for="textoInput">{label}</label>
 <input
-  class=`border-2 border-black bg-white p-2.5 px-4 py-2 shadow-[4px_4px_0px_rgba(0,0,0,1)] focus:bg-rose-300 focus:outline-none ${classInput}`
+  class=`border-2 border-black bg-white p-2.5 px-4 pb-2 pt-2 shadow-[4px_4px_0px_rgba(0,0,0,1)] focus:bg-rose-300 focus:outline-none ${classInput}`
   type="text"
   id={id}
   placeholder={placeholder}
